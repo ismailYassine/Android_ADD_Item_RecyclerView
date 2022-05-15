@@ -6,7 +6,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,18 +18,17 @@ import java.util.Locale;
 
 public class CustomDialog extends DialogFragment {
 
-    public CustomDialogListener listener;
+    public OnClickListener listener;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
         try {
-            listener = (CustomDialogListener) context;
+            listener = (OnClickListener) context;
         } catch (ClassCastException e) {
             throw  new ClassCastException(context.toString() + "Implemet CustomDialogListener");
         }
-
     }
 
     @NonNull
@@ -50,10 +48,9 @@ public class CustomDialog extends DialogFragment {
             @Override
             public void onClick(View view) {
 
-
                 String firstNameInserted = firtName.getText().toString().toLowerCase(Locale.ROOT).trim();
                 String lastNameInserted = lastName.getText().toString().toLowerCase(Locale.ROOT).trim();
-                listener.sendStudentInfosBack(firstNameInserted, lastNameInserted);
+                listener.onClick(firstNameInserted, lastNameInserted);
                 dismiss();
             }
         });
@@ -70,7 +67,7 @@ public class CustomDialog extends DialogFragment {
         return builder.create();
     }
 
-    public  interface CustomDialogListener{
-            void sendStudentInfosBack(String firstNAme, String lastName);
+    public  interface OnClickListener {
+            void onClick(String firstNAme, String lastName);
     }
 }

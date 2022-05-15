@@ -13,7 +13,7 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements CustomDialog.CustomDialogListener {
+public class MainActivity extends AppCompatActivity implements CustomDialog.OnClickListener {
 
     Button addPerson;
     RecyclerView recyclerView;
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialog.Cust
     }
 
     @Override
-    public void sendStudentInfosBack(String firstNAme, String lastName) {
+    public void onClick(String firstNAme, String lastName) {
         addStudent(firstNAme, lastName);
 
     }
